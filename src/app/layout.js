@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const wantedSans = localFont({
   src: [
@@ -52,10 +53,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <body
-        className={`${wantedSans.variable} antialiased`}
+        className={`${wantedSans.variable} font-sans antialiased`}
       >
-        <Navbar></Navbar>
-        {children}
+        <AuthProvider>
+          <Navbar />
+          <main className="max-w-7xl mx-auto px-6">
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );
