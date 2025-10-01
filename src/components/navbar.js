@@ -11,13 +11,10 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/contexts/AuthContext"
 import { Button } from "@/components/ui/button"
+import ProfileDropdown from "@/components/ProfileDropdown"
 
 export default function Navbar() {
-  const { user, logout, isAuthenticated, loading } = useAuth()
-
-  const handleLogout = async () => {
-    await logout()
-  }
+  const { isAuthenticated, loading } = useAuth()
 
   return (
     <div className="w-full fixed top-0 left-0 z-50 p-4">
@@ -31,6 +28,13 @@ export default function Navbar() {
 
           <NavigationMenu>
             <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link href="/home" className={cn(navigationMenuTriggerStyle(), " bg-transparent text-base font-bold")}>
+                    홈
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link href="/community" className={cn(navigationMenuTriggerStyle(), " bg-transparent text-base font-bold")}>
@@ -63,18 +67,7 @@ export default function Navbar() {
               </div>
             ) : isAuthenticated ? (
               // 로그인된 상태
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-950">
-                  안녕하세요, {user?.name || user?.email}님
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleLogout}
-                >
-                  로그아웃
-                </Button>
-              </div>
+              <ProfileDropdown />
             ) : (
               // 로그인되지 않은 상태
               <>
