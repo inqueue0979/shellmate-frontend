@@ -16,6 +16,7 @@ export function middleware(request) {
 
   // 보호된 경로들 정의
   const protectedPaths = [
+    '/home',
     '/community',
     '/column',
     '/consultation',
