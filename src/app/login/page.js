@@ -71,6 +71,7 @@ function LoginForm() {
 
       if (result.success) {
         console.log('로그인 성공, 리다이렉트:', redirectTo)
+        // AuthContext 상태가 완전히 업데이트된 후 리다이렉트
         router.push(redirectTo)
       } else {
         setError(result.message)

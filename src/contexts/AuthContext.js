@@ -96,11 +96,12 @@ export function AuthProvider({ children }) {
 
       // 로그인 성공
       setTokens(data.access, data.refresh)
-      await fetchUser()
+      const userData = await fetchUser()
 
       return {
         success: true,
-        message: '로그인 성공'
+        message: '로그인 성공',
+        user: userData
       }
     } catch (error) {
       console.error('로그인 오류:', error)
