@@ -18,7 +18,7 @@ export function setTokens(accessToken, refreshToken) {
 
   // 쿠키에 저장 (브라우저 재시작 시에도 유지)
   document.cookie = `accessToken=${accessToken}; max-age=${60 * 60}; path=/; secure; samesite=strict`
-  document.cookie = `refreshToken=${refreshToken}; max-age=${7 * 24 * 60 * 60}; path=/; secure; samesite=strict; httponly`
+  document.cookie = `refreshToken=${refreshToken}; max-age=${7 * 24 * 60 * 60}; path=/; secure; samesite=strict; httpOnly`
 }
 
 /**
